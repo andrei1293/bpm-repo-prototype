@@ -8,10 +8,26 @@
     <h2>Business Process Model</h2>
     <a href="main.html" role="button">Back</a>
     <p>Process model information, metrics and similar models.</p>
-    <form class="form-horizontal">
-        <div class="form-group" id="modelImage">
+    <p class="bg-info" id="updateFormSubmit">Process model has been updated.</p>
+    <div id="afterUpdate">
+        <p>After updating model, please commit and push changes to your remote repository, so others can use it:</p>
+        <blockquote class="blockquote-reverse">
+            <p><small><kbd>git add .</kbd></small></p>
+            <p><small><kbd>git commit -m "Commit message"</kbd></small></p>
+            <p><small><kbd>git push --all origin</kbd></small></p>
+        </blockquote>
+    </div>
+    <form class="form-horizontal" id="modelInfoSection">
+        <div class="form-group">
             <div class="col-sm-8">
-                <img src="models/supply.png" alt="Process model image isn't stored" class="form-control-static img-thumbnail">
+                <p>
+                    <img src="models/supply.png" alt="Process model image isn't stored" class="form-control-static img-thumbnail">
+                </p>
+                <p>
+                    <input type="file" class="form-control" id="modelImage" placeholder="Process model image">
+                </p>
+                <p class="bg-danger" id="updateModelImageError">Please select model image to upload.</p>
+                <button type="button" class="btn btn-default" id="updateModelImageButton">Update model image</button>
             </div>
         </div>
         <div class="form-group">
@@ -30,12 +46,22 @@
             <label class="col-sm-3 control-label">Process model file</label>
             <div class="col-sm-8">
                 <p class="form-control-static"><a href="#">supply.bpmn</a></p>
+                <p>
+                    <input type="file" class="form-control" id="modelFile" placeholder="Process model file">
+                </p>
+                <p class="bg-danger" id="updateModelFileError">Please select model file to upload.</p>
+                <button type="button" class="btn btn-default" id="updateModelFileButton">Update model file</button>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Process model report</label>
             <div class="col-sm-8">
-                <p class="form-control-static"><a href="#">supply.xpdl</a></p>
+                <p class="form-control-static"><a href="#">supply_report.pdf</a></p>
+                <p>
+                    <input type="file" class="form-control" id="modelReport" placeholder="Process model report">
+                </p>
+                <p class="bg-danger" id="updateModelReportError">Please select model report to upload.</p>
+                <button type="button" class="btn btn-default" id="updateModelReportButton">Update model report</button>
             </div>
         </div>
         <div class="form-group">
@@ -106,5 +132,7 @@
     </div>
 </body>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="script/dashboard.js"></script>
+<script src="script/model.js"></script>
 </html>

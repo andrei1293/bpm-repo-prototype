@@ -4,12 +4,12 @@ google.charts.setOnLoadCallback(drawLineChart);
 
 function drawBarChart() {
     var data = google.visualization.arrayToDataTable([
-        ['Metric',              'Value'],
-        ['Tasks / Subprocesses',    7],
-        ['Gateways',                2],
-        ['Start events',            1],
-        ['Intermediate events',     0],
-        ['End events',              1]
+        ['Metric',              'Value', { role: 'style' }],
+        ['Tasks / Subprocesses',    7,      '6699ff'],
+        ['Gateways',                2,      '#ff9900'],
+        ['Start events',            1,      '#33cc33'],
+        ['Intermediate events',     2,      '#cc9900'],
+        ['End events',              1,      '#cc3300']
     ]);
 
     var view = new google.visualization.DataView(data);
@@ -37,7 +37,8 @@ function drawLineChart() {
         title: 'Design shortcomings',
         legend: { position: 'none' },
         chartArea: { width: '50%' },
-        hAxis: { textColor: '#FFFFFF' }
+        hAxis: { textColor: '#FFFFFF' },
+        colors: ['#009933']
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('linechartMetrics'));
