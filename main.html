@@ -1,0 +1,66 @@
+<DOCTYPE html>
+<html>
+<head>
+    <title>Process Model Repository</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body class="col-md-8 col-md-offset-2">
+    <h2>Process Model Repository</h2>
+    <a href="auth.html" role="button">Back</a>
+    <p>Use following links to perform the operation you need.</p>
+    <div id="navigationBar">
+        <form class="form-inline">
+            <div class="form-group">
+                <a class="btn btn-default" href="store.html" role="button">Process Model Storing</a>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-default" href="#" role="button">Dashboard</a>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-default" href="#" role="button">Process Model Search</a>
+            </div>
+        </form>
+    </div>
+    <p>To start working with Process Model Repository create a working copy of a remote repository
+        or fetch and merge changes on the remote server to your working directory:</p>
+    <blockquote class="blockquote-reverse">
+        <p><small><kbd>git clone username@host:/path/to/repository</kbd></small></p>
+        <p><small><kbd>git pull</kbd></small></p>
+    </blockquote>
+    <div id="storedModelsList">
+        <div id="modelListItem">
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Process name</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static"><a href="#">Supply</a></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Process model type</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">BPMN</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Process model file</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static"><a href="#">supply.bpmn</a></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">
+                                    <a class="btn btn-default" href="#" role="button">View details</a>
+                                </label>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
