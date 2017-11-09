@@ -3,6 +3,7 @@ $(document).ready(function() {
     $('#newProcessSection').hide();
     $('#storeFormError').hide();
     $('#storeFormSubmit').hide();
+    $('#afterStoring').hide();
 
     $('#newProcess').click(function() {
         $('#existingProcessSection').hide();
@@ -32,6 +33,7 @@ $(document).ready(function() {
             $('#storeFormError').hide();
             $('#storeModelForm').hide();
             $('#storeFormSubmit').show();
+            $('#afterStoring').show();
         } else {
             $('#storeFormError').show();
         }
