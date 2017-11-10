@@ -5,7 +5,7 @@ google.charts.setOnLoadCallback(drawLineChart);
 function drawBarChart() {
     var data = google.visualization.arrayToDataTable([
         ['Metric',              'Value', { role: 'style' }],
-        ['Tasks / Subprocesses',    7,      '6699ff'],
+        ['Tasks / Subprocesses',    7,      '#6699ff'],
         ['Gateways',                2,      '#ff9900'],
         ['Start events',            1,      '#33cc33'],
         ['Intermediate events',     2,      '#cc9900'],
