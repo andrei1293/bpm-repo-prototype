@@ -1,6 +1,8 @@
 google.charts.load('current', {'packages':['corechart']});
+google.charts.load('current', {'packages':['gauge']});
 google.charts.setOnLoadCallback(drawBarChart);
 google.charts.setOnLoadCallback(drawLineChart);
+google.charts.setOnLoadCallback(drawGauge);
 
 function drawBarChart() {
     var data = google.visualization.arrayToDataTable([
@@ -42,5 +44,23 @@ function drawLineChart() {
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('linechartMetrics'));
+    chart.draw(data, options);
+}
+
+function drawGauge() {
+    var data = google.visualization.arrayToDataTable([
+        ['Label', 'Value'],
+        ['CSC', 73]
+    ]);
+
+    var options = {
+        width: 120, height: 120,
+        redFrom: 0, redTo: 37,
+        yellowFrom: 37, yellowTo: 80,
+        greenFrom: 80, greenTo: 100,
+        minorTicks: 10
+    };
+
+    var chart = new google.visualization.Gauge(document.getElementById('modelGauge'));
     chart.draw(data, options);
 }
