@@ -38,7 +38,7 @@ function drawLineChart() {
     var options = {
         title: 'Design shortcomings',
         legend: { position: 'none' },
-        chartArea: { width: '50%' },
+        chartArea: { width: '70%' },
         hAxis: { textColor: '#FFFFFF' },
         colors: ['#009933']
     };
@@ -50,7 +50,7 @@ function drawLineChart() {
 function drawGauge() {
     var data = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
-        ['CSC', 73]
+        ['CSC, %', 80]
     ]);
 
     var options = {
