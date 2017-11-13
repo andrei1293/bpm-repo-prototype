@@ -32,9 +32,9 @@ $(document).ready(function() {
 
         if (!$('#modelFile').val()) isStoreFormValid = false;
 
-        if (!$("#openModel").prop("checked") && !$("#grantAccess").prop("checked")) {
+        /*if (!$("#openModel").prop("checked") && !$("#grantAccess").prop("checked")) {
             isStoreFormValid = false;
-        }
+        }*/
 
         if (isStoreFormValid) {
             $('#storeFormError').hide();
@@ -54,7 +54,7 @@ $(document).ready(function() {
         $('#grantRolesSection').show();
     });
 
-    $('#addUserReadModel').click(function() {
+    /*$('#addUserReadModel').click(function() {
         var userName = $('#grantUserField').val();
         var isValid = true;
         if (!userName) isValid = false;
@@ -106,5 +106,5 @@ $(document).ready(function() {
         } else {
             $('#grantUserError').hide();
         }
-    });
+    });*/
 });

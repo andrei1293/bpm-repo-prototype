@@ -55,9 +55,9 @@
                 <label for="processIndustry">Process industry</label> <span class="text-danger">*</span>
                 <select class="form-control" id="processIndustry">
                     <option>Supply chain</option>
-                    <option>Manufactory</option>
-                    <option>Information technology</option>
-                    <option>Banking</option>
+                    <option>&nbsp;&nbsp;&nbsp;Manufactory</option>
+                    <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Information technology</option>
+                    <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Banking</option>
                     <option>Other</option>
                 </select>
             </div>
@@ -92,7 +92,7 @@
                 <label for="modelImage">Process model image</label>
                 <input type="file" class="form-control" id="modelImage" placeholder="Process model image">
             </div>
-            <div class="radio">
+            <!--<div class="radio">
                 Model access <span class="text-danger">*</span>
                 <label>
                     <input type="radio" name="setModelAccess" id="openModel" value="openModel"> Open access
@@ -118,7 +118,7 @@
                     <button type="button" class="btn btn-default btn-sm" id="addUserReadModel">Grant read</button>
                     <button type="button" class="btn btn-primary btn-sm" id="addUserWriteModel">Grant write</button>
                 </form>
-            </div>
+            </div>-->
             <p class="bg-danger" id="storeFormError">Please fill in all necessary fields.</p>
             <button type="button" class="btn btn-default" id="storeModelButton">Store process model</button>
         </div>
