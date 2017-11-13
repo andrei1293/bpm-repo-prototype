@@ -27,6 +27,7 @@ $(document).ready(function() {
         if ($("#newProcess").prop("checked")) {
             if (!$('#processName').val()) isStoreFormValid = false;
             if (!$('#processSource').val()) isStoreFormValid = false;
+            if ($('#parentProcessList').val() == 'none') isStoreFormValid = false;
         }
 
         if (!$('#modelFile').val()) isStoreFormValid = false;
