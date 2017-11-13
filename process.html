@@ -8,11 +8,37 @@
     <h2>Business Process</h2>
     <a href="main.html" role="button">Back</a>
     <p>Process information and related models.</p>
-    <form class="form-horizontal">
+    <p class="bg-info" id="updateFormSubmit">Process model has been updated.</p>
+    <form class="form-horizontal" id="processInfo">
         <div class="form-group">
             <label class="col-sm-3 control-label">Process name</label>
             <div class="col-sm-8">
                 <p class="form-control-static">Supply</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Parent process</label>
+            <div class="col-sm-8">
+                <p class="form-control-static"><a href="process.html">Source</a></p>
+                <p>
+                    <select class="form-control" id="parentProcessList">
+                        <option value="none">---</option>
+                        <option value="Source">Source</option>
+                        <option value="Make">Make</option>
+                        <option value="Deliver">Deliver</option>
+                    </select>
+                </p>
+                <p class="bg-danger" id="updateParentProcessError">Please select parent process.</p>
+                <button type="button" class="btn btn-default btn-sm" id="updateParentProcessButton">Update parent process</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Child processes</label>
+            <div class="col-sm-8">
+                <ul class="list-unstyled">
+                      <li><a href="process.html">Make</a></li>
+                      <li><a href="process.html">Deliver</a></li>
+                </ul>
             </div>
         </div>
         <div class="form-group">
@@ -66,4 +92,6 @@
         </div>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="script/process.js"></script>
 </html>
