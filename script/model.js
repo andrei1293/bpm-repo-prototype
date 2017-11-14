@@ -17,7 +17,7 @@ $(document).ready(function() {
             $('#updateFormSubmit').show();
             $('#afterUpdate').show();
 
-            $.get('https://api.bpm-repo/updateModelImage.php',
+            $.get('http://api.bpm-repo/updateModelImage.php',
                 {
                     'modelId' : $_GET('modelId'),
                     'modelImage' : $('#modelImage').val()
@@ -40,7 +40,7 @@ $(document).ready(function() {
             $('#updateFormSubmit').show();
             $('#afterUpdate').show();
 
-            $.get('https://api.bpm-repo/updateModelFile.php',
+            $.get('http://api.bpm-repo/updateModelFile.php',
                 {
                     'modelId' : $_GET('modelId'),
                     'modelFile' : $('#modelFile').val()
@@ -63,7 +63,7 @@ $(document).ready(function() {
             $('#updateFormSubmit').show();
             $('#afterUpdate').show();
 
-            $.get('https://api.bpm-repo/updateModelReport.php',
+            $.get('http://api.bpm-repo/updateModelReport.php',
                 {
                     'modelId' : $_GET('modelId'),
                     'modelReport' : $('#modelReport').val()
@@ -81,7 +81,7 @@ app.controller("modelPageController", function($scope) {
 
     $.ajax({
         type : 'GET',
-        url : 'https://api.bpm-repo/model.php?modelId=' + $_GET('modelId'),
+        url : 'http://api.bpm-repo/model.php?modelId=' + $_GET('modelId'),
         success : function(data) {
             response = data;
         },

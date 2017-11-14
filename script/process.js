@@ -13,7 +13,7 @@ $(document).ready(function() {
             $('#storedModelsList').hide();
             $('#updateFormSubmit').show();
 
-            $.get('https://api.bpm-repo/updateParentProcess.php',
+            $.get('http://api.bpm-repo/updateParentProcess.php',
                 {
                     'processId' : $_GET('processId'),
                     'parentProcess' : $('#parentProcessList').val()
@@ -31,7 +31,7 @@ app.controller("processPageController", function($scope) {
 
     $.ajax({
         type : 'GET',
-        url : 'https://api.bpm-repo/process.php?processId=' + $_GET('processId'),
+        url : 'http://api.bpm-repo/process.php?processId=' + $_GET('processId'),
         success : function(data) {
             response = data;
         },

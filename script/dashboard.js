@@ -9,7 +9,7 @@ function drawBarChart() {
 
     $.ajax({
         type : 'GET',
-        url : 'https://api.bpm-repo/model.php?modelId=' + $_GET('modelId'),
+        url : 'http://api.bpm-repo/model.php?modelId=' + $_GET('modelId'),
         success : function(data) {
             response = data;
         },
@@ -53,7 +53,7 @@ function drawLineChart() {
 
     $.ajax({
         type : 'GET',
-        url : 'https://api.bpm-repo/model.php?modelId=' + $_GET('modelId'),
+        url : 'http://api.bpm-repo/model.php?modelId=' + $_GET('modelId'),
         success : function(data) {
             response = data;
         },
@@ -94,7 +94,7 @@ function drawGauge() {
 
     $.ajax({
         type : 'GET',
-        url : 'https://api.bpm-repo/model.php?modelId=' + $_GET('modelId'),
+        url : 'http://api.bpm-repo/model.php?modelId=' + $_GET('modelId'),
         success : function(data) {
             response = data;
         },

@@ -31,7 +31,7 @@ $(document).ready(function() {
             if (!$('#processSource').val()) isStoreFormValid = false;
             if ($('#parentProcessList').val() == 'none') isStoreFormValid = false;
 
-            $.get('https://api.bpm-repo/storeProcess.php',
+            $.get('http://api.bpm-repo/storeProcess.php',
                 {
                     'processId' : processId,
                     'processName' : $('#processName').val(),
@@ -56,7 +56,7 @@ $(document).ready(function() {
             $('#afterStoring').show();
 
             if ($("#newProcess").prop("checked")) {
-                $.get('https://api.bpm-repo/storeModel.php',
+                $.get('http://api.bpm-repo/storeModel.php',
                     {
                         'relatedProcess' : processId,
                         'modelType' : $('#modelType').val(),
@@ -66,7 +66,7 @@ $(document).ready(function() {
                     }
                 );
             } else {
-                $.get('https://api.bpm-repo/storeModel.php',
+                $.get('http://api.bpm-repo/storeModel.php',
                     {
                         'relatedProcess' : $('#existingProcessList').val(),
                         'modelType' : $('#modelType').val(),
@@ -150,7 +150,7 @@ app.controller("storePageController", function($scope) {
 
     $.ajax({
         type : 'GET',
-        url : 'https://api.bpm-repo/store.php',
+        url : 'http://api.bpm-repo/store.php',
         success : function(data) {
             response = data;
         },
