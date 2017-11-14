@@ -4,7 +4,7 @@ app.controller("mainPageController", function($scope) {
 
     $.ajax({
         type : 'GET',
-        url : 'http://api.bpm-repo/models.php',
+        url : 'http://localhost:8081/api.bpm-repo/models.php',
         success : function(data) {
             response = data;
         },

@@ -24,23 +24,10 @@ $(document).ready(function() {
             isStoreFormValid = false;
         }
 
-        var processId = new Date().getTime();
-
         if ($("#newProcess").prop("checked")) {
             if (!$('#processName').val()) isStoreFormValid = false;
             if (!$('#processSource').val()) isStoreFormValid = false;
             if ($('#parentProcessList').val() == 'none') isStoreFormValid = false;
-
-            $.get('http://api.bpm-repo/storeProcess.php',
-                {
-                    'processId' : processId,
-                    'processName' : $('#processName').val(),
-                    'parentProcess' : $('#parentProcessList').val(),
-                    'processIndustry' : $('#processIndustry').val(),
-                    'processSource' : $('#processSource').val(),
-                    'processDescription' : $('#processDescription').val()
-                }
-            );
         }
 
         if (!$('#modelFile').val()) isStoreFormValid = false;
@@ -55,10 +42,26 @@ $(document).ready(function() {
             $('#storeFormSubmit').show();
             $('#afterStoring').show();
 
+            var id = new Date().getTime();
+
+            console.log(id);
+
             if ($("#newProcess").prop("checked")) {
+                $.get('http://api.bpm-repo/storeProcess.php',
+                    {
+                        'processId' : id,
+                        'processName' : $('#processName').val(),
+                        'parentProcess' : $('#parentProcessList').val(),
+                        'processIndustry' : $('#processIndustry').val(),
+                        'processSource' : $('#processSource').val(),
+                        'processDescription' : $('#processDescription').val()
+                    }
+                );
+
                 $.get('http://api.bpm-repo/storeModel.php',
                     {
-                        'relatedProcess' : processId,
+                        'modelId' : id,
+                        'relatedProcess' : id,
                         'modelType' : $('#modelType').val(),
                         'modelFile' : $('#modelFile').val(),
                         'modelReport' : $('#modelReport').val(),
@@ -68,6 +71,7 @@ $(document).ready(function() {
             } else {
                 $.get('http://api.bpm-repo/storeModel.php',
                     {
+                        'modelId' : id,
                         'relatedProcess' : $('#existingProcessList').val(),
                         'modelType' : $('#modelType').val(),
                         'modelFile' : $('#modelFile').val(),
