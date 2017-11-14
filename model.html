@@ -4,7 +4,7 @@
     <title>Business Process Model</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<body class="col-md-8 col-md-offset-2">
+<body class="col-md-8 col-md-offset-2" ng-app="modelPage" ng-controller="modelPageController">
     <h2>Business Process Model</h2>
     <a href="main.html" role="button">Back</a>
     <p>Process model information, metrics and similar models.</p>
@@ -21,7 +21,7 @@
         <div class="form-group">
             <div class="col-sm-8">
                 <p>
-                    <img src="models/supply.png" alt="Process model image isn't stored"
+                    <img src="models/{{modelImage}}" alt="Process model image isn't stored"
                         class="form-control-static img-thumbnail" data-toggle="modal" data-target=".bs-example-modal-lg">
                 </p>
                 <p>
@@ -30,7 +30,7 @@
                 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
-                            <img src="models/supply.png" alt="Process model image isn't stored" class="form-control-static img-thumbnail">
+                            <img src="models/{{modelImage}}" alt="Process model image isn't stored" class="form-control-static img-thumbnail">
                         </div>
                     </div>
                 </div>
@@ -41,19 +41,19 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">Process name</label>
             <div class="col-sm-8">
-                <p class="form-control-static"><a href="process.html">Supply</a></p>
+                <p class="form-control-static"><a href="process.html?processId={{processId}}">{{processName}}</a></p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Process model type</label>
             <div class="col-sm-8">
-                <p class="form-control-static">BPMN</p>
+                <p class="form-control-static">{{modelType}}</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Process model file</label>
             <div class="col-sm-8">
-                <p class="form-control-static"><a href="#">supply.bpmn</a></p>
+                <p class="form-control-static"><a href="models/{{modelFile}}">{{modelFile}}</a></p>
                 <p>
                     <input type="file" class="form-control" id="modelFile" placeholder="Process model file">
                 </p>
@@ -64,7 +64,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">Process model report</label>
             <div class="col-sm-8">
-                <p class="form-control-static"><a href="#">supply_report.pdf</a></p>
+                <p class="form-control-static"><a href="models/{{modelReport}}">{{modelReport}}</a></p>
                 <p>
                     <input type="file" class="form-control" id="modelReport" placeholder="Process model report">
                 </p>
@@ -76,13 +76,13 @@
             <label class="col-sm-3 control-label">Process model metrics</label>
             <div class="col-sm-8">
                 <ul class="form-control-static">
-                    <li>Tasks / Subprocesses: XX</li>
-                    <li>Gateways: XX</li>
-                    <li>Start events: XX</li>
-                    <li>Intermediate events: XX</li>
-                    <li>End events: XX</li>
-                    <li>Design shortcomings: XX</li>
-                    <li>Coefficient of structure conformity: XX</li>
+                    <li>Tasks / Subprocesses: {{modelMetrics.tasks}}</li>
+                    <li>Gateways: {{modelMetrics.gateways}}</li>
+                    <li>Start events: {{modelMetrics.start}}</li>
+                    <li>Intermediate events: {{modelMetrics.intermediate}}</li>
+                    <li>End events: {{modelMetrics.end}}</li>
+                    <li>Design shortcomings: {{modelMetrics.shortcomings}}</li>
+                    <li>Coefficient of structure conformity: {{modelMetrics.conformity}}%</li>
                 </ul>
             </div>
         </div>
@@ -104,15 +104,14 @@
         <div class="form-group" id="enhancementRecommendations">
             <label class="col-sm-3 control-label">Process model enhancement recommendations</label>
             <div class="col-sm-8">
-                <ul class="form-control-static">
-                    <li>Task 'Example' disconnected from the rest of the process 'Example'</li>
-                    <li>Intermediate event 'Example' excluded from the process 'Example' flow</li>
+                <ul class="form-control-static" ng-repeat="x in modelEnhancement">
+                    <li>{{x}}</li>
                 </ul>
             </div>
         </div>
     </form>
     <div id="storedModelsList">
-        <div id="modelListItem">
+        <div id="modelListItem" ng-repeat="model in models">
             <table class="table table-bordered">
                 <tr>
                     <td>
@@ -120,24 +119,24 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Process name</label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static"><a href="process.html">Supply</a></p>
+                                    <p class="form-control-static"><a href="process.html?processId={{model.processId}}">{{model.processName}}</a></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Process model type</label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">BPMN</p>
+                                    <p class="form-control-static">{{model.modelType}}</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Process model file</label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static"><a href="#">supply.bpmn</a></p>
+                                    <p class="form-control-static"><a href="models/{{model.modelFile}}">{{model.modelFile}}</a></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">
-                                    <a class="btn btn-default" href="model.html" role="button">View details</a>
+                                    <a class="btn btn-default" href="model.html?modelId={{model.modelId}}" role="button">View details</a>
                                 </label>
                             </div>
                         </form>
@@ -150,6 +149,8 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="script/get.js"></script>
 <script src="script/dashboard.js"></script>
 <script src="script/model.js"></script>
 </html>

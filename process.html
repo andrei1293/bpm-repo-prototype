@@ -4,7 +4,7 @@
     <title>Business Process</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<body class="col-md-8 col-md-offset-2">
+<body class="col-md-8 col-md-offset-2" ng-app="processPage" ng-controller="processPageController">
     <h2>Business Process</h2>
     <a href="main.html" role="button">Back</a>
     <p>Process information and related models.</p>
@@ -13,19 +13,16 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">Process name</label>
             <div class="col-sm-8">
-                <p class="form-control-static">Supply</p>
+                <p class="form-control-static">{{processName}}</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Parent process</label>
             <div class="col-sm-8">
-                <p class="form-control-static"><a href="process.html">Source</a></p>
+                <p class="form-control-static"><a href="process.html?processId={{parentProcessId}}">{{parentProcessName}}</a></p>
                 <p>
                     <select class="form-control" id="parentProcessList">
-                        <option value="none">---</option>
-                        <option value="Source">Source</option>
-                        <option value="Make">Make</option>
-                        <option value="Deliver">Deliver</option>
+                        <option ng-repeat="x in processes" value="{{x.processId}}">{{x.processName}}</option>
                     </select>
                 </p>
                 <p class="bg-danger" id="updateParentProcessError">Please select parent process.</p>
@@ -36,8 +33,7 @@
             <label class="col-sm-3 control-label">Child processes</label>
             <div class="col-sm-8">
                 <ul class="list-unstyled">
-                      <li><a href="process.html">Make</a></li>
-                      <li><a href="process.html">Deliver</a></li>
+                      <li ng-repeat="x in childProcesses"><a href="process.html?processId={{x.processId}}">{{x.processName}}</a></li>
                 </ul>
             </div>
         </div>
@@ -63,7 +59,7 @@
         </div>
     </form>
     <div id="storedModelsList">
-        <div id="modelListItem">
+        <div id="modelListItem" ng-repeat="model in models">
             <table class="table table-bordered">
                 <tr>
                     <td>
@@ -71,18 +67,18 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Process model type</label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">BPMN</p>
+                                    <p class="form-control-static">{{model.modelType}}</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Process model file</label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static"><a href="#">supply.bpmn</a></p>
+                                    <p class="form-control-static"><a href="models/{{model.modelFile}}">{{model.modelFile}}</a></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">
-                                    <a class="btn btn-default" href="model.html" role="button">View details</a>
+                                    <a class="btn btn-default" href="model.html?modelId={{model.modelId}}" role="button">View details</a>
                                 </label>
                             </div>
                         </form>
@@ -93,5 +89,7 @@
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="script/get.js"></script>
 <script src="script/process.js"></script>
 </html>

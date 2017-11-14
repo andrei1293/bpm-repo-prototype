@@ -24,10 +24,23 @@ $(document).ready(function() {
             isStoreFormValid = false;
         }
 
+        var processId = new Date().getTime();
+
         if ($("#newProcess").prop("checked")) {
             if (!$('#processName').val()) isStoreFormValid = false;
             if (!$('#processSource').val()) isStoreFormValid = false;
             if ($('#parentProcessList').val() == 'none') isStoreFormValid = false;
+
+            $.get('https://api.bpm-repo/storeProcess.php',
+                {
+                    'processId' : processId,
+                    'processName' : $('#processName').val(),
+                    'parentProcess' : $('#parentProcessList').val(),
+                    'processIndustry' : $('#processIndustry').val(),
+                    'processSource' : $('#processSource').val(),
+                    'processDescription' : $('#processDescription').val()
+                }
+            );
         }
 
         if (!$('#modelFile').val()) isStoreFormValid = false;
@@ -41,6 +54,28 @@ $(document).ready(function() {
             $('#storeModelForm').hide();
             $('#storeFormSubmit').show();
             $('#afterStoring').show();
+
+            if ($("#newProcess").prop("checked")) {
+                $.get('https://api.bpm-repo/storeModel.php',
+                    {
+                        'relatedProcess' : processId,
+                        'modelType' : $('#modelType').val(),
+                        'modelFile' : $('#modelFile').val(),
+                        'modelReport' : $('#modelReport').val(),
+                        'modelImage' : $('#modelImage').val()
+                    }
+                );
+            } else {
+                $.get('https://api.bpm-repo/storeModel.php',
+                    {
+                        'relatedProcess' : $('#existingProcessList').val(),
+                        'modelType' : $('#modelType').val(),
+                        'modelFile' : $('#modelFile').val(),
+                        'modelReport' : $('#modelReport').val(),
+                        'modelImage' : $('#modelImage').val()
+                    }
+                );
+            }
         } else {
             $('#storeFormError').show();
         }
@@ -107,4 +142,53 @@ $(document).ready(function() {
             $('#grantUserError').hide();
         }
     });*/
+});
+
+var app = angular.module("storePage", []);
+app.controller("storePageController", function($scope) {
+    var response = null;
+
+    $.ajax({
+        type : 'GET',
+        url : 'https://api.bpm-repo/store.php',
+        success : function(data) {
+            response = data;
+        },
+        async : false
+    });
+
+    $scope.processes = [
+        {
+            'processId' : 'none',
+            'processName' : '---'
+        },
+        {
+            'processId' : '1',
+            'processName' : 'Make'
+        },
+        {
+            'processId' : '2',
+            'processName' : 'Deliver'
+        }
+    ];
+    $scope.processIndustry = [
+        {
+            'processIndustryId' : '1',
+            'processIndustryName' : 'Supply chain'
+        },
+        {
+            'processIndustryId' : '2',
+            'processIndustryName' : 'Manufactory'
+        }
+    ];
+    $scope.modelType = [
+        {
+            'modelTypeId' : '1',
+            'modelTypeName' : 'BPMN'
+        },
+        {
+            'modelTypeId' : '2',
+            'modelTypeName' : 'IDEF0'
+        }
+    ];
 });
