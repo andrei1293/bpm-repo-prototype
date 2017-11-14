@@ -1,12 +1,12 @@
 var app = angular.module("searchPage", []);
 app.controller("searchPageController", function($scope) {
-    var response = null;
+    var metadata = null;
 
     $.ajax({
         type : 'GET',
-        url : 'http://api.bpm-repo/store.php',
+        url : 'http://localhost:8081/api.bpm-repo/metadata.php',
         success : function(data) {
-            response = data;
+            metadata = data;
         },
         async : false
     });
@@ -31,6 +31,17 @@ app.controller("searchPageController", function($scope) {
             'modelTypeName' : 'IDEF0'
         }
     ];
+
+    var models = null;
+
+    $.ajax({
+        type : 'GET',
+        url : 'http://localhost:8081/api.bpm-repo/models.php',
+        success : function(data) {
+            models = data;
+        },
+        async : false
+    });
 
     $scope.models = [
         {

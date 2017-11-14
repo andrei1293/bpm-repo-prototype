@@ -47,7 +47,7 @@ $(document).ready(function() {
             console.log(id);
 
             if ($("#newProcess").prop("checked")) {
-                $.get('http://api.bpm-repo/storeProcess.php',
+                $.get('http://localhost:8081/api.bpm-repo/storeProcess.php',
                     {
                         'processId' : id,
                         'processName' : $('#processName').val(),
@@ -58,7 +58,7 @@ $(document).ready(function() {
                     }
                 );
 
-                $.get('http://api.bpm-repo/storeModel.php',
+                $.get('http://localhost:8081/api.bpm-repo/storeProcess.php',
                     {
                         'modelId' : id,
                         'relatedProcess' : id,
@@ -69,7 +69,7 @@ $(document).ready(function() {
                     }
                 );
             } else {
-                $.get('http://api.bpm-repo/storeModel.php',
+                $.get('http://localhost:8081/api.bpm-repo/storeProcess.php',
                     {
                         'modelId' : id,
                         'relatedProcess' : $('#existingProcessList').val(),
@@ -154,45 +154,16 @@ app.controller("storePageController", function($scope) {
 
     $.ajax({
         type : 'GET',
-        url : 'http://api.bpm-repo/store.php',
+        url : 'http://localhost:8081/api.bpm-repo/metadata.php',
+        dataType : 'json',
         success : function(data) {
             response = data;
+            console.log(data);
         },
         async : false
     });
 
-    $scope.processes = [
-        {
-            'processId' : 'none',
-            'processName' : '---'
-        },
-        {
-            'processId' : '1',
-            'processName' : 'Make'
-        },
-        {
-            'processId' : '2',
-            'processName' : 'Deliver'
-        }
-    ];
-    $scope.processIndustry = [
-        {
-            'processIndustryId' : '1',
-            'processIndustryName' : 'Supply chain'
-        },
-        {
-            'processIndustryId' : '2',
-            'processIndustryName' : 'Manufactory'
-        }
-    ];
-    $scope.modelType = [
-        {
-            'modelTypeId' : '1',
-            'modelTypeName' : 'BPMN'
-        },
-        {
-            'modelTypeId' : '2',
-            'modelTypeName' : 'IDEF0'
-        }
-    ];
+    $scope.processes = response[0].processes;
+    $scope.processIndustry = response[0].industries;
+    $scope.modelType = response[0].types;
 });
